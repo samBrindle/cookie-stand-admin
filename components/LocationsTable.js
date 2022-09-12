@@ -12,19 +12,25 @@ export default function LocationsTable({ locationsList: locations}) {
                 <thead>
                     <tr>
                         <th>Location</th>
-                        {hours.map(item => <th  key={item}>{item}</th> )}
+                        {hours.map(item => <th  key={item} className='border border-black' >{item}</th> )}
                     </tr>
                 </thead>
                 <tbody>
                     {locations.map(item => (
                         <tr key={item.location}>
                             <td className="p-2 border border-black" >{item.location}</td>
-                            {hourly_sales.map(sales => (
-                                <td className="p-2 border border-black" key={sales}>{sales}</td>
+                            {hourly_sales.map((sales,idx) => (
+                                <td className="p-2 border border-black" key={idx}>{sales}</td>
                             ))}
                         </tr>
                     ))}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Totals</th>
+                        {hourly_sales.map((sales, idx) => <td key={idx} className='border border-black' >{sales * locations.length}</td>)}
+                    </tr>
+                </tfoot>
             </table>
         )
     }
